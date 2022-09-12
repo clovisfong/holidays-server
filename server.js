@@ -41,10 +41,13 @@ app.get('/countries/seed', async (req,res)=>{
     const result = await Country.insertMany(countries);
 
     res.json(result);
-    
 
 })
 
+app.get('/countries', async (req,send)=> {
+    const countries = await Country.find()
+    res.send(countries)
+})
 
 
 app.listen(PORT, "0.0.0.0", () => {
