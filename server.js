@@ -10,7 +10,7 @@ const holiday = require('./models/Holidays')
 //Configuration
 const MONGO_URI = process.env.MONGO_URI ?? 'mongodb://localhost:27017/holiday'
 const app = express()
-const port = process.env.PORT ?? 3000
+const PORT = process.env.PORT ?? 3000;
 
 mongoose.connect(MONGO_URI, {}, ()=> { console.log('connected to mongoDB')})
 mongoose.connection.on("error", (err) => console.log(err.message + " is Mongod not running?"));
@@ -29,13 +29,9 @@ app.get('/',(req,res) => {
 
 
 
-app.get('/holidays', (req,res) => {
-
-})
 
 
-
-app.listen(port, ()=>{
-    console.log('Express listening to ' + port)
-})
-
+app.listen(PORT, "0.0.0.0", () => {
+    log(`Express listing on ${PORT}`);
+  });
+  
