@@ -5,10 +5,12 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const morgan = require("morgan");
 const holiday = require('./models/Holidays')
+const Country = require('./models/Country')
 
 
 //Configuration
-const MONGO_URI = process.env.MONGO_URI ?? 'mongodb://localhost:27017/holiday'
+const MONGO_URI = "mongodb+srv://sei38:sei38@cluster0.rid6l5a.mongodb.net/?retryWrites=true&w=majority" 
+?? 'mongodb://localhost:27017/holiday'
 const app = express()
 const PORT = process.env.PORT ?? 3000;
 
@@ -27,11 +29,25 @@ app.get('/',(req,res) => {
     res.send({ msg: 'test from backend'})
 })
 
+app.get('/countries/seed', async (req,res)=>{
 
+    const countries = [
+        { title: "Singapore" },
+        { title: "Italy" },
+        { title: "Thailand" },
+      ];
+
+    await Country.deleteMany()
+    const result = await Country.insertMany(countries);
+
+    res.json(result);
+    
+
+})
 
 
 
 app.listen(PORT, "0.0.0.0", () => {
-    log(`Express listing on ${PORT}`);
+    console.log(`Express listing on ${PORT}`);
   });
   
