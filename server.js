@@ -44,7 +44,7 @@ app.get('/countries/seed', async (req,res)=>{
 
 })
 
-app.get('/countries', async (req,send)=> {
+app.get('/countries', async (req,res)=> {
     const countries = await Country.find()
     res.send(countries)
 })
