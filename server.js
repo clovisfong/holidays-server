@@ -2,6 +2,7 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const morgan = require("morgan");
 const holiday = require('./models/Holidays')
 
@@ -15,14 +16,17 @@ const port = process.env.PORT ?? 3000
 //Middleware
 app.use(express.json())
 app.use(morgan("dev"));
+app.use(cors());
 
 
 app.get('/',(req,res) => {
-    res.send('testing from backend')
+    res.send({ msg: 'test from backend'})
 })
 
+
+
 app.get('/holidays', (req,res) => {
-    
+
 })
 
 
